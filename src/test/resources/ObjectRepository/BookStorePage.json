@@ -1,0 +1,54 @@
+[
+	{
+		"logicalName": "Main_Header",
+		"elementType": "Label",
+		"frameName": "Main",
+		"English": {
+			"locatorType": "class",
+			"locatorValue": "main-header"
+		},
+		"Thai": {
+			"locatorType": "class",
+			"locatorValue": "main-header"
+		}
+	},
+		{
+		"logicalName": "Book Name",
+		"elementType": "Link",
+		"frameName": "Main",
+		"English": {
+			"locatorType": "link",
+			"locatorValue": "${data}"
+		},
+		"Thai": {
+			"locatorType": "link",
+			"locatorValue": "${data}"
+		}
+	},
+		{
+		"logicalName": "Book Title",
+		"elementType": "Label",
+		"frameName": "Main",
+		"English": {
+			"locatorType": "xpath",
+			"locatorValue": "//label[text()='${data}']"
+		},
+		"Thai": {
+			"locatorType": "xpath",
+			"locatorValue": "//label[text()='${data}']"
+		}
+	},
+		{
+		"logicalName": "Add To Your Collection Button",
+		"elementType": "Button",
+		"frameName": "Main",
+		"English": {
+			"locatorType": "xpath",
+			"locatorValue": "//button[text()='Add To Your Collection']"
+		},
+		"Thai": {
+			"locatorType": "xpath",
+			"locatorValue": "//button[text()='Add To Your Collection']"
+		}
+	}
+]

@@ -1,0 +1,67 @@
+[
+	{
+		"logicalName": "Main_Header",
+		"elementType": "Label",
+		"frameName": "Main",
+		"English": {
+			"locatorType": "class",
+			"locatorValue": "main-header"
+		},
+		"Thai": {
+			"locatorType": "class",
+			"locatorValue": "main-header"
+		}
+	},
+	{
+		"logicalName": "UserName",
+		"elementType": "TextBox",
+		"frameName": "Main",
+		"English": {
+			"locatorType": "id",
+			"locatorValue": "userName"
+		},
+		"Thai": {
+			"locatorType": "id",
+			"locatorValue": "userName"
+		}
+	},
+	{
+		"logicalName": "Password",
+		"elementType": "TextBox",
+		"frameName": "Main",
+		"English": {
+			"locatorType": "id",
+			"locatorValue": "password"
+		},
+		"Thai": {
+			"locatorType": "id",
+			"locatorValue": "password"
+		}
+	},
+	{
+		"logicalName": "Login",
+		"elementType": "Button",
+		"frameName": "Main",
+		"English": {
+			"locatorType": "id",
+			"locatorValue": "login"
+		},
+		"Thai": {
+			"locatorType": "id",
+			"locatorValue": "login"
+		}
+	},
+	{
+		"logicalName": "Message",
+		"elementType": "Label",
+		"frameName": "Main",
+		"English": {
+			"locatorType": "id",
+			"locatorValue": "name"
+		},
+		"Thai": {
+			"locatorType": "id",
+			"locatorValue": "name"
+		}
+	}
+]

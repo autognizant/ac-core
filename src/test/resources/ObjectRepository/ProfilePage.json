@@ -1,0 +1,93 @@
+[
+	{
+		"logicalName": "Type to search TextBox",
+		"elementType": "TextBox",
+		"frameName": "Main",
+		"English": {
+			"locatorType": "id",
+			"locatorValue": "searchBox"
+		},
+		"Thai": {
+			"locatorType": "id",
+			"locatorValue": "searchBox"
+		}
+	},
+	{
+		"logicalName": "Logout_Link",
+		"elementType": "Label",
+		"frameName": "Main",
+		"English": {
+			"locatorType": "xpath",
+			"locatorValue": "//*[@id='submit']"
+		},
+		"Thai": {
+			"locatorType": "class",
+			"locatorValue": "main-header"
+		}
+	},
+		{
+		"logicalName": "Main_Header",
+		"elementType": "Label",
+		"frameName": "Main",
+		"English": {
+			"locatorType": "class",
+			"locatorValue": "main-header"
+		},
+		"Thai": {
+			"locatorType": "class",
+			"locatorValue": "main-header"
+		}
+	},
+	{
+		"logicalName": "Go To Book Store Button",
+		"elementType": "Button",
+		"frameName": "Main",
+		"English": {
+			"locatorType": "id",
+			"locatorValue": "gotoStore"
+		},
+		"Thai": {
+			"locatorType": "id",
+			"locatorValue": "gotoStore"
+		}
+	},
+	{
+		"logicalName": "Delete All Books Button",
+		"elementType": "Button",
+		"frameName": "Main",
+		"English": {
+			"locatorType": "xpath",
+			"locatorValue": "//button[text()='Delete All Books']"
+		},
+		"Thai": {
+			"locatorType": "xpath",
+			"locatorValue": "//button[text()='Delete All Books']"
+		}
+	},
+	{
+		"logicalName": "OK Button",
+		"elementType": "Button",
+		"frameName": "Main",
+		"English": {
+			"locatorType": "id",
+			"locatorValue": "closeSmallModal-ok"
+		},
+		"Thai": {
+			"locatorType": "id",
+			"locatorValue": "closeSmallModal-ok"
+		}
+	},
+	{
+		"logicalName": "Empty Collection Message",
+		"elementType": "Label",
+		"frameName": "Main",
+		"English": {
+			"locatorType": "class",
+			"locatorValue": "rt-noData"
+		},
+		"Thai": {
+			"locatorType": "class",
+			"locatorValue": "rt-noData"
+		}
+	}
+]
