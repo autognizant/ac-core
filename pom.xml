@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.autognizant</groupId>
 	<artifactId>ac-core</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>Autognizant Framework</name>
 	<description>This is Autognizant Framework core library</description>
 	<url>https://github.com/autognizant/ac-core.git</url>
