@@ -268,7 +268,7 @@ public class AutognizantDriver {
 
 	/**
 	 * Parameterized Constructor which creates Internet Explorer instance.
-	 * @param sBrowserName Name of the browser to be opened.
+	 * @param applicationType Type of the application like WEB, SERVICES, MOBILE
 	 */
 	public AutognizantDriver(String applicationType) {
 		if (applicationType.equalsIgnoreCase("web")){
@@ -365,7 +365,7 @@ public class AutognizantDriver {
 	
 	/**
 	 * Clicks the web element.
-	 * @param elementName Logical Name provided for web element in Object Repository.
+	 * @param elementName Element Name provided in the object repository.
 	 * @throws Exception 
 	 */ 
 	public void clickElement(String elementName) throws Exception  {
@@ -385,7 +385,7 @@ public class AutognizantDriver {
 
 	/**
 	 * Clicks the web element.
-	 * @param elementName Logical Name provided for web element in Object Repository.
+	 * @param elementName Element Name provided in the object repository.
 	 * @param dynamicText Dynamic text to be provided for identifying dynamic web elements. 
 	 * @throws Exception 
 	 */ 
@@ -402,7 +402,7 @@ public class AutognizantDriver {
 
 	/**
 	 * Clicks the web element.
-	 * @param elementName Logical Name provided for web element in Object Repository.
+	 * @param elementName Element Name provided in the object repository.
 	 * @throws Exception 
 	 */ 
 	public void submitForm(String elementName) throws Exception{
@@ -434,7 +434,7 @@ public class AutognizantDriver {
 
 	/**
 	 * Clicks on web element using Javascript.
-	 * @param elementName Logical Name provided for web element in Object Repository.
+	 * @param elementName Element Name provided in the object repository.
 	 * @param dynamicText Dynamic text to be provided for identifying dynamic web elements. 
 	 * @throws Exception 
 	 */ 
@@ -487,7 +487,7 @@ public class AutognizantDriver {
 
 	/**
 	 * Performs double click on the web element.
-	 * @param elementName Logical Name provided for web element in Object Repository.
+	 * @param elementName Element Name provided in the object repository.
 	 * @throws Exception 
 	 */ 
 	public void doubleClickElement(String elementName) throws Exception{
@@ -505,7 +505,7 @@ public class AutognizantDriver {
 
 	/**
 	 * Performs double click on the web element.
-	 * @param elementName Logical Name provided for web element in Object Repository.
+	 * @param elementName Element Name provided in the object repository.
 	 * @param dynamicText Dynamic text to be provided for identifying dynamic web elements. 
 	 * @throws Exception 
 	 */ 
@@ -524,7 +524,7 @@ public class AutognizantDriver {
 	
 	/**
 	 * Executes javaScript on given Web Element.
-	 * @param webElement Logical Name provided in Object Repository
+	 * @param elementName Element Name provided in the object repository.
 	 * @throws Exception Throws Exception 
 	 */ 
 	public void executeJavaScript(String elementName) throws Exception{
@@ -540,14 +540,14 @@ public class AutognizantDriver {
 
 	/**
 	 * Executes javaScript on given Web Element.
-	 * @param webElement Logical Name provided in Object Repository
-	 * @param value Value to be provided for web element in Object Repository 
+	 * @param elementName Element Name provided in the object repository.
+	 * @param dynamicText Dynamic text to be provided for identifying dynamic web elements. 
 	 * @throws Exception Throws Exception 
 	 */ 
-	public void executeJavaScript(String elementName, String sValue) throws Exception{
+	public void executeJavaScript(String elementName, String dynamicText) throws Exception{
 		try {
 			switchToFrame(elementName);
-			jsDriver.executeScript(objectRepository.getWebElementJavaScript(elementName,sValue));
+			jsDriver.executeScript(objectRepository.getWebElementJavaScript(elementName,dynamicText));
 			Log.info("Java script executed on "+ elementName);
 		} catch (Exception e) {
 			Log.error("while executing Java script on ",e);
@@ -557,7 +557,7 @@ public class AutognizantDriver {
 
 	/**
 	 * Performs right click on the web element.
-	 * @param elementName Logical Name provided for web element in Object Repository.
+	 * @param elementName Element Name provided in the object repository.
 	 * @throws Exception 
 	 */ 
 	public void rightClickElement(String elementName) throws Exception{
@@ -577,7 +577,6 @@ public class AutognizantDriver {
 	 * Gets the list of elements on web page.
 	 * @param elementName Element Name provided in the object repository.
 	 * @return Returns the list elements if found otherwise null
-	 * @throws Exception 
 	 */ 
 	public List<WebElement> findElements(String elementName){
 		try {		
@@ -594,7 +593,6 @@ public class AutognizantDriver {
 	 * @param elementName Element Name provided in the object repository.
 	 * @param dynamicText Dynamic text to be provided for identifying dynamic web elements. 
 	 * @return Returns the list elements if found otherwise null
-	 * @throws Exception 
 	 */ 
 	public List<WebElement> findElements(String elementName,String dynamicText){
 		try {		
@@ -787,7 +785,6 @@ public class AutognizantDriver {
 	 * Enters text in Text Field
 	 * @param elementName Element Name provided in the object repository.
 	 * @param text Text to be entered in Text Field
-	 * @throws Exception 
 	 */ 
 	public void enterText(String elementName, String text){
 		try {
@@ -805,7 +802,6 @@ public class AutognizantDriver {
 	 * @param elementName Element Name provided in the object repository.
 	 * @param dynamicText Dynamic text to be provided for identifying dynamic web elements.
 	 * @param text Text to be entered in Text Field
-	 * @throws Exception 
 	 */ 
 	public void enterText(String elementName, String dynamicText, String text){
 		try {
@@ -1402,9 +1398,7 @@ public class AutognizantDriver {
         }
         
     	/**
-    	 * Waits for web element to appear.
-    	 * @param elementName Element Name provided in the object repository.
-    	 * @throws Exception 
+    	 * Waits for alert to appear.
     	 */ 
     	public void waitForAlert(){
     		try { 	

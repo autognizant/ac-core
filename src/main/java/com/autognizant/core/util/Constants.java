@@ -18,14 +18,6 @@ package com.autognizant.core.util;
 
 public final class Constants {
 
-    /**
-     * File name of cucumber properties file: {@value}
-     */
-    public static final String CUCUMBER_PROPERTIES_FILE_NAME = "cucumber.properties";
-    
-    /**
-     * RSOURCES PATH for test project: {@value}
-     */
     public static final String RESOURCES_PATH = System.getProperty("user.dir")+"\\src\\test\\resources";
     public static final String USER_DIR = System.getProperty("user.dir");
 }

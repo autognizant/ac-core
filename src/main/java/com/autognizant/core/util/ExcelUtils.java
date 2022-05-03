@@ -53,7 +53,6 @@ public class ExcelUtils {
 	/**
 	 * Sets the excel file on which excel operations to be performed.
 	 * @param Path Absolute Path of the excel file.
-	 * @param sSheetName Excel sheet name.
 	 */
 	public void setExcelWorkBook(String Path){
 		try {
@@ -487,8 +486,6 @@ public class ExcelUtils {
 	
 	/**
 	 * Checks whether given data is present in specific column.
-	 * @param sData Data
-	 * @param colNum Column Number
 	 * @return Returns True if the given data is present in mentioned column otherwise False.
 	 */	
 	public List<String> getAllSheets(){

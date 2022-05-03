@@ -21,7 +21,7 @@ import com.autognizant.core.util.Constants;
 import blog.softwaretester.properties.PropertyAggregator;
 
 /**
- * Core configuration class
+ * AutognizantConfig class is used to configure framework level parameters.
  */
 public class AutognizantConfig {
 
@@ -29,7 +29,10 @@ public class AutognizantConfig {
 	private static String scenarioIDPrefix;
 	private static String appWindowTitle;
 	private static int elementWait;
-	
+
+	/**
+	 * AutognizantConfig constructor
+	 */
     public AutognizantConfig() {
     	propertyAggregator =
     		    new PropertyAggregator.Builder()
