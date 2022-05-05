@@ -1,8 +1,24 @@
 # ![favicon-32x32](https://user-images.githubusercontent.com/12494447/167016738-cdd94473-0384-45e5-a1db-4879e6c915f9.png) Autognizant Framework
 Simplify web test automation testing !
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-### Autognizant Framework
+- [Autognizant Framework](#autognizant-framework)
+  - [Changelog](#changelog)
+  - [Maven dependency](#maven-dependency)
+- [Documentation](#documentation)
+  - [Pre-requisites](#pre-requisites)
+  - [Setting up Example Project](#setting-up-example-project)
+  - [Running test](#running-test)
+  - [Execution results](#execution-results)
+- [Appendix](#appendix)
+  - [Building](#building)
+  - [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Autognizant Framework
 
 Autognizant Framework is a behavior driven development (BDD) approach to write automation test script to test Web application. It enables you to write and execute automated acceptance/functional tests. It is cross-platform, open source and free. Automate your test cases with minimal coding.
 
@@ -28,11 +44,12 @@ All changes can be seen in the linked [changelog](CHANGELOG.md).
 - Eclipse Plugins
   - <a href="http://download.eclipse.org/technology/m2e/releases/1.4" target="_blank">Maven</a> 
   - <a href="http://cucumber.github.io/cucumber-eclipse/update-site/" target="_blank">Cucumber</a>
-### Setting up ac-example-project
+  
+### Setting up Example Project
 - Install Java and set path.
 - Install Maven and set path.
 - Clone respective repository or download zip.
-	- maven : https://github.com/selenium-cucumber/selenium-cucumber-java-maven-example
+	- maven : https://github.com/autognizant/ac-core
 
 ### Running test
 
@@ -50,15 +67,15 @@ Go to your project directory from terminal and hit following commands
 
 The report is generated inside the target/cucumber-html-reports directory. Open overview-features.html file to view the reports
 
-# Appendix
+## Appendix
 
-## Building
+### Building
 
 Autognizant requires Java >= 16 and Maven >= 3.8.1.
 
 It is available in [Maven central](https://search.maven.org/search?q=g:com.autognizant%20AND%20a:ac-core).
 
-## License
+### License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
