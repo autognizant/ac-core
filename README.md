@@ -1,4 +1,5 @@
-# ![favicon-32x32](https://user-images.githubusercontent.com/12494447/167016738-cdd94473-0384-45e5-a1db-4879e6c915f9.png) Autognizant Framework
+# ![image](https://user-images.githubusercontent.com/12494447/167223009-53630e45-3d87-4371-8f98-bbd22e54563a.png)
+
 Simplify web test automation testing !
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
