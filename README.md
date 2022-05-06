@@ -50,7 +50,7 @@ All changes can be seen in the linked [changelog](CHANGELOG.md).
 - Install Java and set path.
 - Install Maven and set path.
 - Clone respective repository or download zip.
-	- maven : https://github.com/autognizant/ac-core
+	- maven : https://github.com/autognizant/ac-example-project
 
 ### Running test
 
