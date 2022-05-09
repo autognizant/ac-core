@@ -1,6 +1,6 @@
 # ![image](https://user-images.githubusercontent.com/12494447/167223009-53630e45-3d87-4371-8f98-bbd22e54563a.png)
 
-# Simplify web test automation testing !
+# Simplify web automation testing !
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
