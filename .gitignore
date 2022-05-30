@@ -1,6 +1,4 @@
 target/
-test-output/
-.settings/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -13,3 +11,5 @@ buildNumber.properties
 .mvn/wrapper/maven-wrapper.jar
 .classpath
 .project
+test-output/
+.settings/

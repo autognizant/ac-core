@@ -16,8 +16,18 @@
 
 package com.autognizant.core.util;
 
+/**
+ * This class maintains all constant values used in the framework.
+ */
 public final class Constants {
 
+	/**
+	 * RESOURCES_PATH
+	 */
     public static final String RESOURCES_PATH = System.getProperty("user.dir")+"\\src\\test\\resources";
+    
+	/**
+	 * USER_DIR
+	 */
     public static final String USER_DIR = System.getProperty("user.dir");
 }

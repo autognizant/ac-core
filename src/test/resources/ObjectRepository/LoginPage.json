@@ -1,65 +1,45 @@
 [
 	{
-		"logicalName": "Main_Header",
-		"elementType": "Label",
+		"webElementName": "Main_Header",
+		"webElementType": "Label",
 		"frameName": "Main",
 		"English": {
-			"locatorType": "class",
-			"locatorValue": "main-header"
-		},
-		"Thai": {
 			"locatorType": "class",
 			"locatorValue": "main-header"
 		}
 	},
 	{
-		"logicalName": "UserName",
-		"elementType": "TextBox",
+		"webElementName": "UserName",
+		"webElementType": "TextBox",
 		"frameName": "Main",
 		"English": {
-			"locatorType": "id",
-			"locatorValue": "userName"
-		},
-		"Thai": {
 			"locatorType": "id",
 			"locatorValue": "userName"
 		}
 	},
 	{
-		"logicalName": "Password",
-		"elementType": "TextBox",
+		"webElementName": "Password",
+		"webElementType": "TextBox",
 		"frameName": "Main",
 		"English": {
-			"locatorType": "id",
-			"locatorValue": "password"
-		},
-		"Thai": {
 			"locatorType": "id",
 			"locatorValue": "password"
 		}
 	},
 	{
-		"logicalName": "Login",
-		"elementType": "Button",
+		"webElementName": "Login",
+		"webElementType": "Button",
 		"frameName": "Main",
 		"English": {
-			"locatorType": "id",
-			"locatorValue": "login"
-		},
-		"Thai": {
 			"locatorType": "id",
 			"locatorValue": "login"
 		}
 	},
 	{
-		"logicalName": "Message",
-		"elementType": "Label",
+		"webElementName": "Message",
+		"webElementType": "Label",
 		"frameName": "Main",
 		"English": {
-			"locatorType": "id",
-			"locatorValue": "name"
-		},
-		"Thai": {
 			"locatorType": "id",
 			"locatorValue": "name"
 		}

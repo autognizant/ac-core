@@ -20,9 +20,16 @@ import com.autognizant.core.config.CoreConfig;
 import com.autognizant.core.selenium.AutognizantDriver;
 import com.autognizant.core.selenium.DriverFactory;
 
+/**
+ * The DriverManager class used to manage AutognizantDriver object.
+ */
 public class DriverManager {
+	
 	private AutognizantDriver driver;
 
+	/**
+	 * DriverManager constructor.
+	 */
 	public DriverManager() {
 		if(driver == null){
 			driver = new AutognizantDriver(CoreConfig.getApplicationType());
@@ -30,10 +37,17 @@ public class DriverManager {
 		}
 	}
 
+	/**
+	 * Gets AutognizantDriver object.
+	 * @return AutognizantDriver object.
+	 */
 	public AutognizantDriver getAutognizantDriver() {
 		return driver;
 	}
 	
+	/**
+	 * Quits AutognizantDriver object.
+	 */
 	public void quitAutognizantDriver(){
 		driver.quitBrowser();
 		DriverFactory.removeDriver();

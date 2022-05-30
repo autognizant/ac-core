@@ -10,6 +10,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import com.autognizant.core.config.AutognizantConfig;
+
 import io.cucumber.java.Scenario;
 
 @RunWith(PowerMockRunner.class)
@@ -34,9 +36,9 @@ public class AutomationHooksTest {
 	@Test
 	public void testBeforeScenario() throws Exception {
 		automationHooks.beforeScenario(scenario);
-		Assert.assertTrue(automationHooks.scenarioUniqueID.equals("@ECAUTO-Scenario1"), "Scenario ID is not captured !");
-		Assert.assertTrue(automationHooks.scenarioName.equals("Sample Test Scenario"), "Scenario Name is not captured !");
-		Assert.assertTrue(automationHooks.logFile.equals("@ECAUTO-Scenario1-Sample Test Scenario ID.log"), "Scenario LogFile is not captured !");
+		Assert.assertTrue(AutognizantConfig.getScenarioUniqueID().equals("@ECAUTO-Scenario1"), "Scenario ID is not captured !");
+		Assert.assertTrue(AutognizantConfig.getScenarioName().equals("Sample Test Scenario"), "Scenario Name is not captured !");
+		Assert.assertTrue(AutognizantConfig.getLogFile().equals("@ECAUTO-Scenario1-Sample Test Scenario ID.log"), "Scenario LogFile is not captured !");
 	}
 	
 	@Test(dependsOnMethods = {"testBeforeScenario"})

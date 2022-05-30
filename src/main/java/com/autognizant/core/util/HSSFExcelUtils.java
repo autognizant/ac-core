@@ -27,6 +27,7 @@ import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.util.CellRangeAddress;
 
@@ -70,10 +71,10 @@ public class HSSFExcelUtils {
 	 * @param sTemplateFile Name of the Template file.
 	 * @param sSheetName Excel sheet name.
 	 */
-	public void setExcelFileWithTemplate(String Path,String sTemplateFile,String sSheetName) throws Exception {
+	public void setExcelFileWithTemplate(String Path,String sTemplateFile,String sSheetName){
 		sFile = Path;
-		//		ExcelWBook = new HSSFWorkbook( OPCPackage.open("Resources//"+sTemplateFile+".xlsx") );
-		//		ExcelWSheet = ExcelWBook.getSheet(sSheetName);
+		//ExcelWBook = new HSSFWorkbook( OPCPackage.open("Resources//"+sTemplateFile+".xlsx") );
+		//ExcelWSheet = ExcelWBook.getSheet(sSheetName);
 	}
 
 	/**
@@ -128,34 +129,34 @@ public class HSSFExcelUtils {
 
 	/**
 	 * Get Cell data.
-	 * @param RowNum Row Number of the Cell
-	 * @param ColNum Column Number of the Cell
+	 * @param RowNum Row Number of the Cell.
+	 * @param ColNum Column Number of the Cell.
+	 * @return Returns the Cell data.
 	 */
-	@SuppressWarnings("deprecation")
 	public String getCellData(int RowNum, int ColNum){
 		try{        	   
 			Cell = ExcelWSheet.getRow(RowNum).getCell(ColNum);
-			int type = Cell.getCellType();
+			CellType type = Cell.getCellType();
 			Object  result;
 			switch (type) {
-			case 0: // numeric value in Excel
-			case 2: // precomputed value based on formula
+			case NUMERIC: // numeric value in Excel
+			case FORMULA: // precomputed value based on formula
 //				result = Cell.getNumericCellValue();
 //              DataFormatter dataFormatter = new DataFormatter();
 //              String valueAsSeenInExcel = dataFormatter.formatCellValue(Cell);
 //              result = valueAsSeenInExcel;
-				Cell.setCellType(1);
+				Cell.setCellType(CellType.STRING);
 				result = Cell.getStringCellValue();
 				break;
-			case 1: // String Value in Excel 
+			case STRING: // String Value in Excel 
 				result = Cell.getStringCellValue();
 				break;
-			case 3:
+			case BLANK:
 				result = "";
-			case 4: //boolean value 
+			case BOOLEAN: //boolean value 
 				result= Cell.getBooleanCellValue();
 				break;
-			case 5:
+			case ERROR:
 			default:  
 				throw new RuntimeException("There is no support for this type of cell");                        
 			}
@@ -196,7 +197,7 @@ public class HSSFExcelUtils {
 	 * @param RowNum Row Number of the Cell
 	 * @param ColNum Column Number of the Cell
 	 */	
-	public void setCellData(int iData,  int RowNum, int ColNum) throws Exception    {
+	public void setCellData(int iData,  int RowNum, int ColNum){
 		try{
 			Row  = ExcelWSheet.getRow(RowNum);
 			Cell = Row.getCell(ColNum);
@@ -216,18 +217,16 @@ public class HSSFExcelUtils {
 	/**
 	 * Creates new row
 	 * @param RowNum Row Number of the Cell
-	 * @throws Exception
 	 */	
-	public void createNewRow(int RowNum) throws Exception {
+	public void createNewRow(int RowNum){
 		ExcelWSheet.createRow(RowNum);
 	}
 
 	/**
 	 * Get row used in the excel sheet.
 	 * @return Number of rows used in the excel sheet.
-	 * @throws Exception
 	 */	
-	public int getRowUsed() throws Exception {
+	public int getRowUsed(){
 		try{
 			int RowCount = ExcelWSheet.getLastRowNum();
 			return RowCount;
@@ -240,9 +239,8 @@ public class HSSFExcelUtils {
 	/**
 	 * Get excel data in Object[][]
 	 * @return Returns excel data in Object[][]
-	 * @throws Exception
 	 */	
-	public Object[][] getExcelDataIntoArray() throws Exception{
+	public Object[][] getExcelDataIntoArray(){
 		String[][] tabArray = null;
 		int RowCount = ExcelWSheet.getLastRowNum();
 		int iNumberOfColumns = ExcelWSheet.getRow(0).getLastCellNum();
@@ -258,9 +256,8 @@ public class HSSFExcelUtils {
 	/**
 	 * Get excel data in Object[][]
 	 * @return Returns excel data in Object[][]
-	 * @throws Exception
 	 */	
-	public Map<String, Map<String, String>> getExcelDataIntoHashMap() throws Exception{
+	public Map<String, Map<String, String>> getExcelDataIntoHashMap(){
 		excelData = new HashMap<>();
 		int iNumberOfColumns = ExcelWSheet.getRow(0).getLastCellNum();
 		String[] columnNames = new String[iNumberOfColumns-1];

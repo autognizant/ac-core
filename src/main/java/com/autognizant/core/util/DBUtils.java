@@ -34,6 +34,9 @@ import org.apache.commons.io.FileUtils;
 
 import com.autognizant.core.config.CoreConfig;
 
+/**
+ * This class includes methods for connecting to any database and to perform read/write operations on any database tables.
+ */
 public class DBUtils {
 
 	private static DBUtils dbUtils = new DBUtils();
@@ -44,6 +47,9 @@ public class DBUtils {
 	private List<HashMap<String,Object>> list;
 	private Map<String, List<Object>> map;
 	
+	/**
+	 * DBUtils constructor.
+	 */
 	private DBUtils() {
 		connection = null;
 		statement = null;
@@ -51,10 +57,17 @@ public class DBUtils {
 		resultSet = null;
 	}
 	
+	/**
+	 * Gets the DBUtils singleton object.
+	 * @return Returns the DBUtils singleton object.
+	 */
 	public static DBUtils getInstance( ) {
 		return dbUtils;
 	}
 	
+	/**
+	 * Gets connection with database (Uses the database details provided in configuration.properties file).
+	 */
 	public void getConnection() {
 		try {
 			Class.forName(CoreConfig.getDbDriver());
@@ -71,6 +84,13 @@ public class DBUtils {
 		}
 	}
 
+	/**
+	 * Gets connection with database.
+	 * @param driver Name of the database driver class.
+	 * @param connectionURL database connection URL.
+	 * @param userName database user name.
+	 * @param password database password.
+	 */
 	public void getConnection(String driver, String connectionURL, String userName, String password) {
 		try {
 			Class.forName(driver);
@@ -87,21 +107,38 @@ public class DBUtils {
 		}
 	}
 	
-	public String executeDBQuery(String query){
-		String data = null;
+	/**
+	 * Closes connection with database.
+	 */
+	public void closeConnection() {
 		try {
-			Log.info("query = " + query);
-			resultSet = statement.executeQuery(query);
-			resultSet.next();
-			data = resultSet.getString(1);
-			resultSet.close();
+			statement.close();
+			connection.close();
+			Log.info("DB Connection closed succesfully");
+		} catch (Exception ex) {
+			Log.error("Error Occured while closing Database Connection",ex); 
+		}
+	}
+	
+	/**
+	 * Executes DML query.
+	 * @param updateQuery DML query to be executed.
+	 */
+	public void executeUpdateQuery(String updateQuery){
+		try {
+			Log.info("updateQuery = " + updateQuery);
+			statement.executeUpdate(updateQuery);
 		} catch (SQLException e) {
 			Log.error("SQL Exception Error", e);
 		}	
-		return data;
 	}
-
-	public void executeDBPreparedQuery(String query,String ... params){
+	
+	/**
+	 * Executes prepared select query and converts ResultSet into List and Map format.
+	 * @param query select query to be executed.
+	 * @param params parameters to be replaced with ? in the prepared query.
+	 */
+	public void executePreparedQuery(String query,String ... params){
 		try {
 			Log.info("query = " + query);
 			preparedStatement = connection.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
@@ -118,48 +155,21 @@ public class DBUtils {
 		}	
 	}
 	
-	public List<String> executeDBQuery_arraylist(String query){
-		List<String> data = new ArrayList<String>();
-		try {
-			Log.info("query = " + query);
-			resultSet = statement.executeQuery(query);
-			while(resultSet.next()){
-				data.add(resultSet.getString(1));
-			}
-			
-			resultSet.close();
-		} catch (SQLException e) {
-			Log.error("SQL Exception Error", e);
-		}	
-		return data;
-	}
-	
-	public void executeUpdateQuery(String sUpdateQuery){
-		try {
-			Log.info("query = " + sUpdateQuery);
-			statement.executeUpdate(sUpdateQuery);
-		} catch (SQLException e) {
-			Log.error("SQL Exception Error", e);
-		}	
-	}
-	
-	public void closeConnection() {
-		try {
-			statement.close();
-			connection.close();
-			Log.info("DB Connection closed succesfully");
-		} catch (Exception ex) {
-			Log.error("Error Occured while closing Database Connection",ex); 
-		}
-	}
-	
-	public void executeDBQuery_resultSet(String query) throws SQLException{
+	/**
+	 * Executes select query and converts ResultSet into List and Map format.
+	 * @param query select query to be executed.
+	 * @throws SQLException throws SQLException
+	 */
+	public void executeQuery(String query) throws SQLException{
 			Log.info("executeDBQuery = " + query);
 			resultSet = statement.executeQuery(query);
 			convertResultSetToList();
 			convertResultSetToMap();
 	}
 	
+	/**
+	 * Converts ResultSet into List object.
+	 */
 	private void convertResultSetToList() throws SQLException {
 	    ResultSetMetaData md = resultSet.getMetaData();
 	    int columns = md.getColumnCount();
@@ -174,6 +184,9 @@ public class DBUtils {
 	    }
 	}
 	
+	/**
+	 * Converts ResultSet into Map object.
+	 */
 	private void convertResultSetToMap() throws SQLException {
 	    ResultSetMetaData md = resultSet.getMetaData();
 	    int columns = md.getColumnCount();
@@ -189,19 +202,32 @@ public class DBUtils {
 	    }
 	}
 	
+	/**
+	 * Gets ResultSet into List object.
+	 * @return Returns ResultSet in the form of List.
+	 */
 	public List<HashMap<String,Object>> getResultSetToList(){
 		return list;
 	}
 	
+	/**
+	 * Gets ResultSet into Map object.
+	 * @return Returns ResultSet in the form of Map.
+	 */
 	public Map<String, List<Object>> getResultSetToMap(){
 		return map;
 	}
 	
-	public void executeProcedure(String sFileName) throws Exception{
-		String scriptFilePath = Constants.RESOURCES_PATH+"/TestData/PURGE.sql";
+	/**
+	 * Executes SQL file.
+	 * @param fileName SQL file to be executed. 
+	 * @throws Exception Exception
+	 */
+	public void executeProcedure(String fileName) throws Exception{
+		String scriptFilePath = Constants.RESOURCES_PATH+"/TestData/"+fileName;
 		String plsql = FileUtils.readFileToString(new File(scriptFilePath),"UTF-8");
 		CallableStatement cs = connection.prepareCall(plsql);
-        cs.setString(1, sFileName);
+        cs.setString(1, fileName);
         cs.execute();
 	}
 }

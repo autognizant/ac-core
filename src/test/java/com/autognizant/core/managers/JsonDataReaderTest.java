@@ -21,13 +21,11 @@ public class JsonDataReaderTest {
 		List<JsonWebElement> jsonWebElements = jsonDataReader.getObjectRepositoryData(jsonFile);
 		
 		Assert.assertNotNull(jsonWebElements, "jsonWebElements Object is Null.");
-		Assert.assertEquals(jsonWebElements.get(0).getLogicalName(), "Main_Header", "Logical Name is not matched");
-		Assert.assertEquals(jsonWebElements.get(1).getLogicalName(), "UserName", "Logical Name is not matched");
-		Assert.assertEquals(jsonWebElements.get(1).getElementType(), "TextBox", "Element Type is not matched");
+		Assert.assertEquals(jsonWebElements.get(0).getWebElementName(), "Main_Header", "Web Element Name is not matched");
+		Assert.assertEquals(jsonWebElements.get(1).getWebElementName(), "UserName", "Web Element Name is not matched");
+		Assert.assertEquals(jsonWebElements.get(1).getWebElementType(), "TextBox", "Web Element Type is not matched");
 		Assert.assertEquals(jsonWebElements.get(1).getFrameName(), "Main", "Frame Name is not matched");
 		Assert.assertEquals(jsonWebElements.get(1).getEnglish().get("locatorType"), "id", "Locator Type is not matched");
 		Assert.assertEquals(jsonWebElements.get(1).getEnglish().get("locatorValue"), "userName", "Locator Type is not matched");
-		Assert.assertEquals(jsonWebElements.get(1).getThai().get("locatorType"), "id", "Locator Type is not matched");
-		Assert.assertEquals(jsonWebElements.get(1).getThai().get("locatorValue"), "userName", "Locator value is not matched");
 	}
 }

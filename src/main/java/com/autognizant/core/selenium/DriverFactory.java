@@ -23,6 +23,9 @@ import org.openqa.selenium.WebDriver;
 
 import com.autognizant.core.util.Log;
 
+/**
+ * This class manages the multiple WebDriver instances created during parallel execution using ThreadLocal.
+ */
 public final class DriverFactory {
 
 	private static ThreadLocal<WebDriver> drivers = new ThreadLocal<>();
@@ -40,17 +43,31 @@ public final class DriverFactory {
 		Log.info("ShutdownHook successfully executed !");
 	}*/
 
+	/**
+	 * DriverFactory constructor.
+	 */
 	private DriverFactory() {}
 
+	/**
+	 * Gets WebDriver object.
+	 * @return WebDriver object.
+	 */ 
 	public static WebDriver getDriver() {
 		return drivers.get();
 	}
 
+	/**
+	 * Adds WebDriver object in storedDrivers list.
+	 * @param driver WebDriver object.
+	 */ 
 	public static void addDriver(WebDriver driver) {
 		storedDrivers.add(driver);
 		drivers.set(driver);
 	}
 
+	/**
+	 * Removes WebDriver object from storedDrivers list.
+	 */ 
 	public static void removeDriver() {
 		Log.info("Beore storedDrivers list = " + storedDrivers.size());
 		storedDrivers.remove(drivers.get());
