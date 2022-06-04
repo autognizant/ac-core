@@ -18,45 +18,78 @@ package com.autognizant.core.dataTypes;
 
 import java.util.Map;
 
+/**
+ * This is a POJO class used to configure web element details from object repository JSON files.
+ */
 public class JsonWebElement {
 	
-	private String logicalName;
-	private String elementType;
+	private String webElementName;
+	private String webElementType;
 	private String frameName;
 	private Map<String, String> English;
-	private Map<String, String> Thai;
     
-	public String getLogicalName() {
-		return logicalName;
+	/**
+	 * Gets web element name value.
+	 * @return web element name.
+	 */
+	public String getWebElementName() {
+		return webElementName;
 	}
-	public void setLogicalName(String logicalName) {
-		this.logicalName = logicalName;
+	
+	/**
+	 * Sets web element name value.
+	 * @param webElementName web element name.
+	 */	
+	public void setWebElementName(String webElementName) {
+		this.webElementName = webElementName;
 	}
-	public String getElementType() {
-		return elementType;
+	
+	/**
+	 * Gets web element type value.
+	 * @return web element type.
+	 */
+	public String getWebElementType() {
+		return webElementType;
 	}
-	public void setElementType(String elementType) {
-		this.elementType = elementType;
+	
+	/**
+	 * Sets web element type value.
+	 * @param webElementType web element type.
+	 */
+	public void setWebElementType(String webElementType) {
+		this.webElementType = webElementType;
 	}
+	
+	/**
+	 * Gets frame name value.
+	 * @return frame name.
+	 */
 	public String getFrameName() {
 		return frameName;
 	}
+	
+	/**
+	 * Sets frame name value.
+	 * @param frameName frame name.
+	 */
 	public void setFrameName(String frameName) {
 		this.frameName = frameName;
 	}
+	
+	/**
+	 * Gets English language key-pair value.
+	 * @return the key-pair value for locator type and locator value.
+	 */
 	public Map<String, String> getEnglish() {
 		return English;
 	}
+	
+	/**
+	 * Sets English language value.
+	 * @param english key-pair value for locator type and locator value.
+	 */
 	public void setEnglish(Map<String, String> english) {
 		English = english;
-	}
-	public Map<String, String> getThai() {
-		return Thai;
-	}
-	public void setThai(Map<String, String> thai) {
-		Thai = thai;
-	}  
-    
-    
+	}        
 }
 

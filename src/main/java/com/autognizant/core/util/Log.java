@@ -27,10 +27,11 @@ import org.slf4j.LoggerFactory;
  */
 public class Log {
 
-    protected static final Logger logger = LoggerFactory.getLogger(Log.class);
+    private static final Logger logger = LoggerFactory.getLogger(Log.class);
     
 	/**
 	 * Logs information message in log file.
+	 * @param sMessage information message.
 	 */
 	public static void info(String sMessage) {
 		logger.info(sMessage);
@@ -38,6 +39,7 @@ public class Log {
 
 	/**
 	 * Logs warn message in log file.
+	 * @param sMessage warn message.
 	 */
 	public static void warn(String sMessage) {
 		logger.warn(sMessage);
@@ -45,6 +47,8 @@ public class Log {
 
 	/**
 	 * Logs error message in log file.
+	 * @param sMessage error message.
+	 * @param e Exception message.
 	 */
 	public static void error(String sMessage,Exception e) {
 		logger.error("Error = " +sMessage);
@@ -54,6 +58,7 @@ public class Log {
 
 	/**
 	 * Logs trace message in log file.
+	 * @param sMessage trace message.
 	 */
 	public static void fatal(String sMessage) {
 		logger.trace(sMessage);
@@ -61,6 +66,8 @@ public class Log {
 
 	/**
 	 * Logs debug message in log file.
+	 * @param sMessage debug message.
+	 * @param e Exception message.
 	 */
 	public static void debug(String sMessage,Exception e) {
 		logger.debug(sMessage,e);

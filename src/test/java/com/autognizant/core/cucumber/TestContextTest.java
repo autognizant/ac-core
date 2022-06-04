@@ -1,12 +1,13 @@
 package com.autognizant.core.cucumber;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-import org.hamcrest.core.IsInstanceOf;
+import static org.hamcrest.Matchers.instanceOf;
+
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -18,13 +19,13 @@ public class TestContextTest {
 
 	private TestContext testContext;
 	private DriverManager testDriverManager;
-	private ScenarioContext scenarioContext;
 
     @BeforeClass
     public void setup() {
     	testContext = PowerMockito.mock(TestContext.class);
     	testDriverManager = PowerMockito.mock(DriverManager.class);
-    	scenarioContext = PowerMockito.mock(ScenarioContext.class);
+    	testContext.setContext("Key1","Value1");
+    	testContext.setContext("Key2","Value2");
     }
     
     @Test
@@ -34,8 +35,17 @@ public class TestContextTest {
     }
     
     @Test
-    public void testGetScenarioContext(){
-    	PowerMockito.when(testContext.getScenarioContext()).thenReturn(scenarioContext);
-    	assertThat(testContext.getScenarioContext(), IsInstanceOf.instanceOf(ScenarioContext.class));
+    public void testGetContext(){
+        Assert.assertTrue(testContext.getContext("Key1").equals("Value1"), "Value1 is not found");
+    }
+    
+    @Test
+    public void testIsContainsSuccessTest(){
+        Assert.assertTrue(testContext.isContains("Key2"), "isContains() return true failed");
+    }
+
+    @Test
+    public void testIsContainsFailedTest(){
+        Assert.assertFalse(testContext.isContains("Key3"), "isContains() return false failed");
     }
 }

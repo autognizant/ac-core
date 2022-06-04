@@ -1,6 +1,6 @@
-# ![image](https://user-images.githubusercontent.com/12494447/167223009-53630e45-3d87-4371-8f98-bbd22e54563a.png)
+# ![favicon-32x32](https://user-images.githubusercontent.com/12494447/167016738-cdd94473-0384-45e5-a1db-4879e6c915f9.png) Autognizant Framework
 
-# Simplify web automation testing !
+Simplify web automation testing !
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -11,7 +11,7 @@
 - [Documentation](#documentation)
   - [Pre-requisites](#pre-requisites)
   - [Setting up Example Project](#setting-up-example-project)
-  - [Running test](#running-test)
+  - [Running tests](#running-tests)
   - [Execution results](#execution-results)
 - [Appendix](#appendix)
   - [Building](#building)
@@ -52,13 +52,13 @@ All changes can be seen in the linked [changelog](CHANGELOG.md).
 - Clone respective repository or download zip.
 	- maven : https://github.com/autognizant/ac-example-project
 
-### Running test
+### Running tests
 
 Go to your project directory from terminal and hit following commands
-
-```
 * Update autognizant.config file(src/test/resources/config) to configure framework level properties.
 * Update configuration.properties file(src/test/resources/config) to configure execution parameters for test run.
+
+```																												 
 * mvn clean verify (defualt will run cucumber features/tags methioned RunCucumberTest.java).
 * mvn clean verify -Dcucumber.filter.tags="@ACAUTO-Scenario1" (this will run specified cucumber tags).
 * mvn clean verify -Dcucumber.features="src/test/resources/features/login.feature" (this will run specified cucumber features).
@@ -66,7 +66,7 @@ Go to your project directory from terminal and hit following commands
 
 ### Execution results
 
-The report is generated inside the target/cucumber-html-reports directory. Open overview-features.html file to view the reports
+The report is generated inside the `target/cucumber-html-reports` directory. Open `overview-features.html` file to view the reports
 
 ## Appendix
 

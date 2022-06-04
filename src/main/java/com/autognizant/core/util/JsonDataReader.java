@@ -29,8 +29,16 @@ import java.util.List;
 import com.autognizant.core.dataTypes.JsonWebElement;
 import com.google.gson.Gson;
 
+/**
+ * This class reads object repository JSON files and stores all web element details in JsonWebElement POJO class object.
+ */
 public class JsonDataReader {
 
+	/**
+	 * Gets Object Repository Data from JSON file.
+	 * @param jsonFile The object repository JSON file.
+	 * @return Returns the list if JsonWebElement objects.
+	 */
 	public List<JsonWebElement> getObjectRepositoryData(File jsonFile) {
 		Gson gson = new Gson();
 		BufferedReader bufferReader = null;
@@ -46,6 +54,11 @@ public class JsonDataReader {
 		}
 	}
 	
+	/**
+	 * Gets Object Repository Data from JSON input stream.
+	 * @param jsonFile The object repository JSON file.
+	 * @return Returns the list if JsonWebElement objects.
+	 */
 	public List<JsonWebElement> getObjectRepositoryData(InputStream jsonFile) {
 		Gson gson = new Gson();
 		BufferedReader bufferReader = null;

@@ -34,11 +34,15 @@ import com.autognizant.core.util.Constants;
 import com.autognizant.core.util.JsonDataReader;
 import com.autognizant.core.util.Log;
 
+/**
+ * This class loads the web element locator details from JSON object repository files and stores them in list of JsonWebElement class.
+ */
 public class ObjectRepository {
 
 	private List<JsonWebElement> jsonWebElementList;
 	private JsonWebElement webElement=null;
 	private JsonDataReader jsonDataReader;
+	
 	/**
 	 * Default Constructor of the ObjectMap class
 	 * Loads Object Repository.
@@ -48,9 +52,8 @@ public class ObjectRepository {
 			Log.info("Loading Object Repository.....");	
 			jsonWebElementList = new ArrayList<JsonWebElement>();
 			jsonDataReader = new JsonDataReader();
-//		    if(!AutomationHooks.RESOURCES_PATH.contains("/src/test/resources")){
-		    	if(!Constants.RESOURCES_PATH.contains("\\src\\test\\resources")){
-		    	List <String> jsonFiles = ObjectRepository.getlistFiles();
+		    if(!Constants.RESOURCES_PATH.contains("\\src\\test\\resources")){
+		    	List <String> jsonFiles = getlistFiles();
 		    	for (String string : jsonFiles) {
 		    		List<JsonWebElement> temp = jsonDataReader.getObjectRepositoryData(this.getClass().getResourceAsStream("/"+string));
 					jsonWebElementList.addAll(temp);
@@ -80,9 +83,10 @@ public class ObjectRepository {
 
 	/**
 	 * Retrieves the web element properties from Object Repository.
-	 * @param sElementName Logical Name for web element mentioned in Object Repository.
+	 * @param sLocatorType Locator Type of the web element mentioned in Object Repository.
+	 * @param sLocatorValue Locator Value of the web element mentioned in Object Repository.
 	 * @return Returns By property for web element.
-	 * @throws Exception
+	 * @throws Exception Runtime Exception
 	 */
 	private By getLocator(String sLocatorType,String sLocatorValue){		
 		if (sLocatorType.toLowerCase().equals("id"))
@@ -111,24 +115,44 @@ public class ObjectRepository {
 		}
 	}
 	
-	public String getFrameName(String sElementName) {
-		webElement = getElementByName(sElementName);
+	/**
+	 * Gets JsonWebElement object by using web element name.
+	 * @param webElementName WebElement Name provided in the object repository.
+	 * @return JsonWebElement object.
+	 */ 
+	private JsonWebElement getElementByName(String webElementName){
+		return jsonWebElementList.stream().filter(x -> x.getWebElementName().equalsIgnoreCase(webElementName)).findAny().get();
+	}
+	
+	/**
+	 * Gets frame name of the web element.
+	 * @param webElementName WebElement Name provided in the object repository.
+	 * @return frame name.
+	 */ 
+	public String getFrameName(String webElementName) {
+		webElement = getElementByName(webElementName);
 		return webElement.getFrameName();
 	}
 
-	private JsonWebElement getElementByName(String logicalName){
-		return jsonWebElementList.stream().filter(x -> x.getLogicalName().equalsIgnoreCase(logicalName)).findAny().get();
-	}
-	
-	public By getWebElement(String sElementName) {
-		webElement = getElementByName(sElementName);
+	/**
+	 * Gets By object of the web element.
+	 * @param webElementName WebElement Name provided in the object repository.
+	 * @return By object of the web element.
+	 */ 
+	public By getWebElement(String webElementName) {
+		webElement = getElementByName(webElementName);
 		String sLocatorType =  webElement.getEnglish().get("locatorType");
 		String sLocatorValue = webElement.getEnglish().get("locatorValue");
 		return getLocator(sLocatorType,sLocatorValue);
 	}	
 	
-	public String getWebElementJavaScript(String sElementName) {
-		webElement = getElementByName(sElementName);
+	/**
+	 * Gets Javascript to be executed on the web element.
+	 * @param webElementName WebElement Name provided in the object repository.
+	 * @return Javascript to be executed on the web element.
+	 */ 
+	public String getWebElementJavaScript(String webElementName) {
+		webElement = getElementByName(webElementName);
 		String sLocatorType =  webElement.getEnglish().get("locatorType");
 		String sLocatorValue = webElement.getEnglish().get("locatorValue");
 		if(sLocatorType.toLowerCase().equals("javascript"))
@@ -143,12 +167,18 @@ public class ObjectRepository {
 		}
 	}	
 	
-	public String getWebElementJavaScript(String sElementName, String sValue) {
-		webElement = getElementByName(sElementName);
+	/**
+	 * Gets Javascript to be executed on the web element.
+	 * @param webElementName WebElement Name provided in the object repository.
+	 * @param dynamicText Dynamic text to be provided for identifying dynamic web elements. 
+	 * @return Javascript to be executed on the web element.
+	 */ 
+	public String getWebElementJavaScript(String webElementName, String dynamicText) {
+		webElement = getElementByName(webElementName);
 		String sLocatorType =  webElement.getEnglish().get("locatorType");
 		String sLocatorValue = webElement.getEnglish().get("locatorValue");
 		if(sLocatorValue.contains("${data}")){
-			sLocatorValue = sLocatorValue.replaceAll("\\$\\{data\\}", sValue);
+			sLocatorValue = sLocatorValue.replaceAll("\\$\\{data\\}", dynamicText);
 		}
 		if(sLocatorType.toLowerCase().equals("javascript"))
 			return sLocatorValue;
@@ -162,8 +192,14 @@ public class ObjectRepository {
 		}
 	}	
 	
-	public By getWebElement(String sElementName, String dynamicText) {
-		webElement = getElementByName(sElementName);
+	/**
+	 * Retrieves the web element properties from Object Repository.
+	 * @param webElementName WebElement Name provided in the object repository.
+	 * @param dynamicText Dynamic text to be provided for identifying dynamic web elements. 
+	 * @return Returns By property for web element.
+	 */ 
+	public By getWebElement(String webElementName, String dynamicText) {
+		webElement = getElementByName(webElementName);
 		String sLocatorType =  webElement.getEnglish().get("locatorType");
 		String sLocatorValue = webElement.getEnglish().get("locatorValue");
 		if(sLocatorValue.contains("${data}")){
@@ -172,7 +208,11 @@ public class ObjectRepository {
 		return getLocator(sLocatorType,sLocatorValue);
 	}		
 	
-	public static List<String> getlistFiles () {
+	/**
+	 * Gets the lists of object repository JSON files present in the Object Repository folder.
+	 * @return Returns the lists of object repository JSON files.
+	 */
+	private List<String> getlistFiles () {
 		List<String> list =null;
 		try {
 			CodeSource src = ObjectRepository.class.getProtectionDomain().getCodeSource();

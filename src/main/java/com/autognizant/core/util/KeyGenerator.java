@@ -27,6 +27,12 @@ import org.apache.commons.lang3.*;
  */
 public class KeyGenerator {
 
+	/** 
+	 * Gets date in string format.
+	 * @param sDate input date like Today, CurrentDate+2, CurrentDate-5.
+	 * @param sFormat format of the date.
+	 * @return date in provided string format.
+	 */
 	public static String getDate(String sDate,String sFormat) {
 		String dateString=null;
 		Date date = new Date();

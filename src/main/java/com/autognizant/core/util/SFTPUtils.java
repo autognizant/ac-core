@@ -30,6 +30,9 @@ import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 import com.jcraft.jsch.SftpException;
 
+/**
+ * This class contains methods for connecting to any SFTP server and to perform upload/download operations.
+ */
 public class SFTPUtils {
 
 	private static SFTPUtils sftpUtils = new SFTPUtils();
@@ -41,10 +44,17 @@ public class SFTPUtils {
 	private Channel channel = null;
 	private ChannelSftp channelSftp = null;	
 	
+	/**
+	 * Gets the SFTPUtils singleton object.
+	 * @return Returns the SFTPUtils singleton object.
+	 */
 	public static SFTPUtils getInstance( ) {
 		return sftpUtils;
 	}
 	
+	/**
+	 * Gets connection with SFTP server (Uses the server details provided in configuration.properties file).
+	 */
 	public void getConnection() {
 		try {
 			jsch = new JSch();
@@ -68,6 +78,9 @@ public class SFTPUtils {
 		}
 	}
 	
+	/**
+	 * Closes SFTP connection.
+	 */
 	public void closeConnection() {
 		try {
 			channelSftp.exit();
@@ -82,7 +95,12 @@ public class SFTPUtils {
 		}
 	}
 	
-	public void uploadfile_sftp(File file,String locationPath) {
+	/**
+	 * Uploads a file to SFTP server.
+	 * @param file file to be uploaded.
+	 * @param locationPath location path where the file is to be uploaded to.
+	 */
+	public void uploadFile(File file, String locationPath) {
 		try {
 			channelSftp.cd(locationPath);
 			channelSftp.put(new FileInputStream(file), file.getName());
@@ -90,7 +108,7 @@ public class SFTPUtils {
 			channelSftp.chmod(511, file.getName());
 			Log.info("File Uploaded using SFTP Channel");
 		} catch (Exception e) {
-			if(isFileExists_sftp(file.getName(), locationPath)){
+			if(isFileExists(file.getName(), locationPath)){
 				Log.info("Exception Occured but File Uploaded using SFTP Channel");
 				try {
 					channelSftp.chmod(511, file.getName());
@@ -105,7 +123,13 @@ public class SFTPUtils {
 		} 
 	}
 	
-	public File downloadfile_sftp(File file,String locationPath) {
+	/**
+	 * Downloads a file from SFTP server.
+	 * @param file file to be downloaded.
+	 * @param locationPath location path where the file is to be downloaded from.
+	 * @return Returns the downloaded file.
+	 */
+	public File downloadFile(File file, String locationPath) {
 		try {
 			channelSftp.cd(locationPath);
 			FileOutputStream fos = new FileOutputStream(file.getAbsolutePath());
@@ -119,8 +143,14 @@ public class SFTPUtils {
 		return null;
 	}
 
+	/**
+	 * Checks if a file exists on a SFTP server.
+	 * @param fileName file
+	 * @param locationPath location path where the file is to be searched.
+	 * @return Returns true if the file exists on a SFTP server otherwise false.
+	 */
 	@SuppressWarnings("unchecked")
-	public boolean isFileExists_sftp(String fileName,String locationPath) {
+	public boolean isFileExists(String fileName, String locationPath) {
 		boolean bFlag = false;
 		try {
 			channelSftp.cd(locationPath);
