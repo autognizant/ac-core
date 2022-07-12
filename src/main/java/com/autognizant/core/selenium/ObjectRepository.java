@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 
 import com.autognizant.core.dataTypes.JsonWebElement;
@@ -88,7 +88,8 @@ public class ObjectRepository {
 	 * @return Returns By property for web element.
 	 * @throws Exception Runtime Exception
 	 */
-	private By getLocator(String sLocatorType,String sLocatorValue){		
+	private By getLocator(String sLocatorType,String sLocatorValue){
+		Log.info("LocatorType = "+ sLocatorType+", LocatorValue = "+sLocatorValue);
 		if (sLocatorType.toLowerCase().equals("id"))
 			return By.id(sLocatorValue);
 		else if(sLocatorType.toLowerCase().equals("name"))
@@ -119,9 +120,10 @@ public class ObjectRepository {
 	 * Gets JsonWebElement object by using web element name.
 	 * @param webElementName WebElement Name provided in the object repository.
 	 * @return JsonWebElement object.
+	 * @throws Exception 
 	 */ 
 	private JsonWebElement getElementByName(String webElementName){
-		return jsonWebElementList.stream().filter(x -> x.getWebElementName().equalsIgnoreCase(webElementName)).findAny().get();
+			return jsonWebElementList.stream().filter(x -> x.getWebElementName().equalsIgnoreCase(webElementName)).findAny().get();
 	}
 	
 	/**
@@ -177,8 +179,12 @@ public class ObjectRepository {
 		webElement = getElementByName(webElementName);
 		String sLocatorType =  webElement.getEnglish().get("locatorType");
 		String sLocatorValue = webElement.getEnglish().get("locatorValue");
-		if(sLocatorValue.contains("${data}")){
-			sLocatorValue = sLocatorValue.replaceAll("\\$\\{data\\}", dynamicText);
+		if(sLocatorValue.contains("dynamicText")){
+			int count = StringUtils.countMatches(sLocatorValue, "dynamicText");
+			String[] replacementList = StringUtils.split(dynamicText, ",");
+			for(int i=0;i<count;i++) {
+				sLocatorValue = sLocatorValue.replaceFirst("dynamicText", replacementList[i]);
+			}
 		}
 		if(sLocatorType.toLowerCase().equals("javascript"))
 			return sLocatorValue;
@@ -202,8 +208,12 @@ public class ObjectRepository {
 		webElement = getElementByName(webElementName);
 		String sLocatorType =  webElement.getEnglish().get("locatorType");
 		String sLocatorValue = webElement.getEnglish().get("locatorValue");
-		if(sLocatorValue.contains("${data}")){
-			sLocatorValue = sLocatorValue.replaceAll("\\$\\{dynamicText\\}", dynamicText);
+		if(sLocatorValue.contains("dynamicText")){
+			int count = StringUtils.countMatches(sLocatorValue, "dynamicText");
+			String[] replacementList = StringUtils.split(dynamicText, ",");
+			for(int i=0;i<count;i++) {
+				sLocatorValue = sLocatorValue.replaceFirst("dynamicText", replacementList[i]);
+			}
 		}
 		return getLocator(sLocatorType,sLocatorValue);
 	}		

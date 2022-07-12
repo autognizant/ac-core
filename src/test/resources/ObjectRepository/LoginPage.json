@@ -43,5 +43,32 @@
 			"locatorType": "id",
 			"locatorValue": "name"
 		}
+	},
+	{
+		"webElementName": "Dynamic Web Element1",
+		"webElementType": "Label",
+		"frameName": "Main",
+		"English": {
+			"locatorType": "xpath",
+			"locatorValue": "//div[@Class='rt-table']//div[text()='dynamicText']/parent::div/preceding-sibling[2]"
+		}
+	},
+	{
+		"webElementName": "Dynamic Web Element2",
+		"webElementType": "Label",
+		"frameName": "Main",
+		"English": {
+			"locatorType": "xpath",
+			"locatorValue": "//div[text()='dynamicText']/following-sibling::div[count(//div[@class='rt-table']//div[text()='dynamicText']/parent::div/preceding-sibling::*)+1]"
+		}
+	},
+	{
+		"webElementName": "Dynamic Web Element3",
+		"webElementType": "Label",
+		"frameName": "Main",
+		"English": {
+			"locatorType": "xpath",
+			"locatorValue": "//div[text()='dynamicText']/following-sibling::div[count(//div[@class='rt-table']//div[text()='dynamicText']/parent::div/preceding-sibling::*)+1] || //div[text()='dynamicText']"
+		}
 	}
 ]
