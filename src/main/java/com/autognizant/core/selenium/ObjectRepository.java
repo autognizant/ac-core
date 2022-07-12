@@ -120,7 +120,6 @@ public class ObjectRepository {
 	 * Gets JsonWebElement object by using web element name.
 	 * @param webElementName WebElement Name provided in the object repository.
 	 * @return JsonWebElement object.
-	 * @throws Exception 
 	 */ 
 	private JsonWebElement getElementByName(String webElementName){
 			return jsonWebElementList.stream().filter(x -> x.getWebElementName().equalsIgnoreCase(webElementName)).findAny().get();
